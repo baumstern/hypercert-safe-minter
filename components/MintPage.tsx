@@ -7,10 +7,10 @@ import { HypercertMetadata } from "@hypercerts-org/sdk";
 import { createColumnHelper } from "@tanstack/react-table";
 import { fetchReports, transformToHypercertData } from "vd2hc";
 import { DateTime } from "luxon";
+import { CMS_ACCESS_TOKEN, VD_REPORTS_ENDPOINT } from "@/lib/constants";
 
 export type MintData = HypercertMetadata & { cid: string };
 
-const VD_REPORTS_ENDPOINT = "https://directus.voicedeck.org";
 
 export const MintPage = () => {
   const [metadata, setMetadata] = useState<HypercertMetadata[]>([]);
@@ -38,7 +38,7 @@ export const MintPage = () => {
   useEffect(() => {
     const fetchVoicedeckReports = async () => {
       console.log("Fetching reports");
-      const response = await fetchReports(VD_REPORTS_ENDPOINT);
+      const response = await fetchReports(VD_REPORTS_ENDPOINT, CMS_ACCESS_TOKEN);
 
       console.log(response);
 
