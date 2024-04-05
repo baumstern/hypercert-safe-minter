@@ -26,7 +26,8 @@ export function MintHypercerts({ data }: MintHypercertProps) {
     return encodeFunctionData({
       abi: HypercertMinterAbi,
       functionName: "mintClaim",
-      args: [address, 10000, metadata, 0],
+      // 2 refers to the TransferRestrictions which should be FromCreatorOnly
+      args: [address, 10000, metadata, 2],
     });
   };
 
